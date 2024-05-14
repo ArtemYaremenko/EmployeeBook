@@ -1,16 +1,22 @@
 import java.util.Objects;
 
 public class Employee {
-    private String fullName;
+    static int i = 0;
+    private final String fullName;
     private int depart;
-    private int salary;
-    private static int id = 0;
+    private double salary;
+    private int id = 0;
 
-    public Employee(String fullName, int depart, int salary) {
+    public Employee(String fullName, int depart, double salary) {
+        id = ++i;
         this.fullName = fullName;
         this.depart = depart;
         this.salary = salary;
-        id++;
+        //i++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFullName() {
@@ -21,7 +27,7 @@ public class Employee {
         return depart;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
@@ -29,7 +35,7 @@ public class Employee {
         this.depart = depart;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
@@ -52,21 +58,4 @@ public class Employee {
         return "ID - " + id + "\nФИО - " + fullName + "\nОтдел - " + depart + "\nЗ/П - " + salary + "\n\n";
     }
 
-    public static void displayListEmployees(Employee[] employees) {
-        for (Employee employee : employees) {
-            if (employee != null) {
-                System.out.println(employee.toString());
-            } else return;
-        }
-    }
-
-    public static int calculateAmountSalaryCosts(Employee[] employees) {
-        int amountSalary = 0;
-        for (Employee employee : employees) {
-            if (employee != null) {
-                amountSalary += employee.getSalary();
-            }
-        }
-        return amountSalary;
-    }
 }
